@@ -1,16 +1,16 @@
 #---------------------------------------------------------------#
 #                                                               #
-# Tur-Requests.                                                 #
+# Tur-Request.                                                  #
 #                                                               #
 # Supposed to replace 'site request' & 'site reqfilled' on site #
 # and add !request, !reqfilled & !requests functions to irc.    #
 # ( !reqdel and !reqwipe too )                                  #
 #                                                               #
-# Can also delete requests if they are older then a # of days   #
+# Can also delete requests if they are older than a # of days   #
 # and unfilled, as well as deleting those that ARE filled after #
 # a (different?) number of days.                                #
 #                                                               #
-# Bot parts ment for Dark0n3's zipscript-c and/or pzs-ng.       #
+# Bot parts are meant for Dark0n3's zipscript-c and/or pzs-ng.  #
 #                                                               #
 # Will create a .requests file (definable) and optionally the   #
 # directories (REQ-Release and FILLED-Release).                 #
@@ -24,14 +24,14 @@
 # Copy tur-request.conf to /glftpd/bin (same dir as .sh).       #
 #                                                               #
 # Copy either tur-request.no_auth.tcl OR tur-request.auth.tcl   #
-# to your bots scripts dir and load it in the bots config file. #
-# Which one you choose depends on weither or not you want to    #
-# use the authentication system in tur-request.                 #
+# to your bot's scripts dir and load it in the bot's config     #
+# file. Which one you choose depends on whether or not you want #
+# to use the authentication system in tur-request.              #
 # See the AUTH_SYSTEM setting in tur-request.conf for more info.#
 # Edit your selected tcl and change any triggers if you dont    #
-# like the default settings. Take note of my mad tcl skillz =)  #
+# like the default settings. Take note of my mad Tcl skillz =)  #
 #                                                               #
-# If you use linux, copy file_date to your glftpd's bin dir.    #
+# If you use Linux, copy file_date to your glftpd's bin dir.    #
 # Otherwise, the source is included as well. This is ONLY for   #
 # deleting old filled requests automatically. If you do not     #
 # want to use this, set 'removefdays' to "" in the config.      #
@@ -41,16 +41,16 @@
 # basename, egrep, rmdir, cat, grep, touch, file_date, tr and   #
 # some standard ones...                                         #
 # If you are going to use the reward system, you need tuls as   #
-# well. Thats a seperate package available at www.grandis.nu    #
+# well. Thats a separate package available at www.grandis.nu    #
 #                                                               #
 # Edit tur-request.conf and change the settings.                #
-# Make REAL sure to read the explanations in the config. I dont #
-# take any responsibility for it deleting stuff.                #
+# Make REAL sure to read the explanations in the config. I      #
+# don't take any responsibility for it deleting stuff.          #
 #                                                               #
 #-[ glftpd.conf settings ]--------------------------------------#
 #                                                               #
 # Add this to glftpd.conf to replace the request and reqfilled  #
-# commands. Im just gonna go ahead and presume you know what    #
+# commands. I'm just gonna go ahead and presume you know what   #
 # what 1 and * means in the custom-* stuff.                     #
 #--                                                           --#
 # site_cmd request       EXEC    /bin/tur-request.sh request
@@ -69,20 +69,20 @@
 #-[ zipscript-c / pzs-ng settings ]-----------------------------#
 #                                                               #
 # To make this mofo announce, We need to add some things.       #
-# If you are using the old dark0n3s zipscript, the following    #
+# If you are using the old Dark0n3's zipscript, the following   #
 # goes to dZSbot.tcl.                                           #
-# If you are using pzs-ng, it goes into dZSconf.tcl             #
+# If you are using pzs-ng, it goes into ngBot.conf              #
 # Note: If you are using a newer version of pzs-ng, you do not  #
 #       need to do anything. TURGEN is already in the new       #
 #       versions. Forgot exact build, but its in 1.0.1811 for   #
 #       sure. Skip these instructions if so.                    #
 #                                                               #
 # Note: Depending on version, set msgtypes(DEFAULT) might not   #
-#       exist in dZSconf.tcl. If so, find it in                 #
-#       dZSbconf.defaults.tcl, copy it into dZSconf.tcl and     #
-#       then add TURGEN to set msgtypes(DEFAULT) in dZSconf.tcl #
+#       exist in ngBot.conf. If so, find it in                  #
+#       ngBot.conf.defaults, copy it into ngBot.conf and        #
+#       then add TURGEN to set msgtypes(DEFAULT) in ngBot.conf  #
 #                                                               #
-# Check first that TURGEN is not already added. Its used for a  #
+# Check first that TURGEN isn't already added. It's used for a  #
 # few other scripts as well.                                    #
 #                                                               #
 # To 'set msgtypes(DEFAULT)', add TURGEN                        #
@@ -95,19 +95,19 @@
 #
 # set variables(TURGEN) "%msg"
 #
-# If you are using Dark0n3s dZSbot.tcl, this goes to dZSbot.tcl 
+# If you are using Dark0n3's dZSbot.tcl, this goes to dZSbot.tcl 
 # as well:                                                      
 # set announce(TURGEN)  "%msg"
 #
 # If, however, you are using pzs-ng (beta3 or higher), then
-# this goes to your current theme file:
+# this goes to your current .zst theme file:
 # announce.TURGEN = "%msg"
 #                                                             --#
 #-[ SS5 settings ]----------------------------------------------#
 #                                                               #
 # To make it announce when using SiteStat5, simply replace      #
-# TURGEN: with RAW: in all occurances of the .conf and the .sh  #
-# Nothing more should be required.                              #
+# TURGEN: with RAW: in all occurrences of the .conf and the     #
+# .sh. Nothing more should be required.                         #
 #                                                               #
 #-[ Other Instructions (READ THESE) ]---------------------------#
 #                                                               #
@@ -118,14 +118,14 @@
 #                                                               #
 #-                                                             -#
 #                                                               #
-# If you want to hide the .requests file so that users can not  #
+# If you want to hide the .requests file, so that users cannot  #
 # edit or destroy it, edit glftpd.conf and put .requests on the #
 # hidden_files field. Example:                                  #
 # hidden_files .journal lost+found requests                     #
 # Yes, it will still be displayed when entering the dir and     #
 # users CAN still modify it, just not see it. Helps a bit.      #
-# This is REALLY important to do incase you have the reward     #
-# system enabled as it will be real easy to manually add a      #
+# This is REALLY important to do in case you have the reward    #
+# system enabled, as it will be really easy to manually add a   #
 # reward to the request otherwise.                              #
 #                                                               #
 #-                                                             -#
@@ -141,20 +141,20 @@
 # fix and checkold.                                             #
 #                                                               #
 # reqdel is used to delete your own requests. It will check if  #
-# the username thats trying to reqdel is the same as the one    #
+# the username that's trying to reqdel is the same as the one   #
 # doing the request.                                            #
 #                                                               #
-# Siteops should instead use 'reqwipe' to delete other peoples  #
-# requests.                                                     #
+# Siteops should instead use 'reqwipe' to delete other          #
+# people's requests.                                            #
 # This is needed because you can not reqfill an empty request   #
 # and you might want to remove your request.                    #
 #                                                               #
 #-                                                             -#
 #                                                               #
-# If you run 'tur-request.sh status auto' it will check if      #
+# If you run 'tur-request.sh status auto', it will check if     #
 # there are any requests and if so, announce it to the channel. #
 # If there are no requests, it will just quit. This is if you   #
-# want a reminder in irc on all the requests from time to time. #
+# want a reminder in irc of all the requests from time to time. #
 # You can just crontab it to do 'status auto' whenever you like.#
 # So add this to crontab to announce all requests at 18:01.     #
 # 1 18 * * *      /glftpd/bin/tur-request.sh status auto        #
@@ -170,7 +170,7 @@
 #-                                                             -#
 #                                                               #
 # When requesting, you can specify who the request is for.      #
-# Simple add -for:username to the request and this will show in #
+# Simply add -for:username to the request and this will show in #
 # the list when checking requests. Examples:                    #
 # site request -for:turranius More.Money.BP                     #
 # or from irc:                                                  #
@@ -179,44 +179,46 @@
 #-                                                             -#
 #                                                               #
 # When requesting, you can add a reward for the filling of the  #
-# request, if the rewardsystem is active. Use -reward:<mb>      #
+# request, if the reward system is active. Use -reward:<MB>     #
 # anywhere in the command.                                      #
 # This only works if AUTH_SYSTEM=TRUE and you are using the     #
 # tur-request.auth.tcl file.                                    #
 #                                                               #
 #-                                                             -#
 #                                                               #
-# If you do not want it announce in the main channel when doing #
-# a request from glftpd, add -hide somewhere in the request.    #
+# If you do not want it to announce in the main channel when    #
+# doing a request from glftpd, add -hide somewhere in the       #
+# request.                                                      #
 # Example: site request -hide -for:turran Release.v1-GRP        #
-# Neither -hide or -for: needs to be in that order though.      #
+# Neither -hide nor -for: needs to be in that order though.     #
 #                                                               #
-# Reqwipe will WIPE OUT THE FOLDER too, even if its not empty.  #
+# Reqwipe will WIPE OUT THE FOLDER too, even if it's not empty. #
 # Used with 'site reqwipe' or '!reqwipe'. If the request has    #
-# been filled, it wont wipe the dir.                            #
+# been filled, it won't wipe the dir.                           #
 #                                                               #
 #-                                                             -#
 #                                                               #
-# You can NOT run this script from shell. Its not designed that #
-# way.                                                          #
+# You can NOT run this script from shell. It's not designed     #
+# that way.                                                     #
 #                                                               #
 #-                                                             -#
 #                                                               #
-# There is also a argument called 'fix'. If you run that, it    #
+# There is also an argument called 'fix'. If you run that, it   #
 # will re-sort the .requests file with the correct numbers.     #
-# Ment if, for some reason, the numbers got screwed up          #
+# Meant if, for some reason, the numbers got screwed up         #
 # ( tur-request.sh fix ).                                       #
 #                                                               #
 #-                                                             -#
 #                                                               #
 # I was going to make a complete script for zipscript-c that    #
-# would automatically fill the request when it was completed    #
-# but it wouldnt work very well. First of all, zipscript-c does #
-# not return the full path, only filename. I can get around it  #
-# by checking xferlog for where that file is. But what if a req #
-# has 2 CD's ? When first was filled, it would reqfill the dir. #
-# So, wont add that right now. You're free to make a working    #
-# complete script as an addon for this and I'l gladly add it.   #
+# would automatically fill the request when it was completed,   #
+# but it wouldn't work very well. First of all, zipscript-c     #
+# doesn't return the full path, only filename. I can get around #
+# it by checking xferlog for where that file is. But what if a  #
+# req has 2 CD's? When first was filled, it would reqfill the   #
+# dir. So, won't add that right now. You're free to make a      #
+# working complete script as an addon for this and I'll gladly  #
+# add it.                                                       #
 #                                                               #
 #-                                                             -#
 #                                                               #

@@ -1,8 +1,8 @@
 ##############################################################################
-# Tur-Request.tcl 1.7 by Turranius                                           #
+# Tur-Request - tur-request.auth.tcl 1.7 by Turranius                        #
 # Use this tcl if you have AUTH_SYSTEM=TRUE set in tur-request.conf          #
-# Change triggers below to whatever you want the trigger the script with.    #
-# If tur-request.sh is not located in /glftpd/bin/ then change the path      #
+# Change triggers below to whatever you want to trigger the script with.     #
+# If tur-request.sh is not located in /glftpd/bin/, then change the path     #
 # in 'set turrequestscript' below.                                           #
 # pub = Open channel. msg = Priv msg to bot.                                 #
 ##############################################################################
