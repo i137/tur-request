@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=2.15.1
+VER=2.15.2
 
 #-[ Script Start ]----------------------------------------------#
 #                                                               #
@@ -1053,7 +1053,8 @@ proc_reqfilled() {
     else
 
       ## It WAS requested by name. Extract the number of the release.
-      WHATNEW="$( cat $reqfile | grep "\[[\ |0-9][0-9]:\] $WHAT \~" | cut -d ']' -f1 | head -n1 )"
+      ## Grep pattern "\[[\ |0-9][0-9]:\]" is incorrect. Corrected it and made it match all use cases, incl. "[100:]". //ikaroz 2016-09-03
+      WHATNEW="$( cat $reqfile | grep -E "\[[\ 0-9]+:\] $WHAT \~" | cut -d ']' -f1 | head -n1 )"
 
       if [ -z "$WHATNEW" ]; then
         echo "Internal Error: Found the $WHAT request in the list but failed to extract its number.."
@@ -1082,7 +1083,8 @@ proc_reqfilled() {
     LINETODEL="$( grep -F "${WHATNEW}" "$reqfile" | head -n1 )"
 
     ## Verify that the number we got from the search really is the correct one.
-    if [ "`echo "$LINETODEL" | cut -c1-5`" != "$WHATNEW" ]; then
+    ## Using "cut -c1-5" does not allow for >99 requests, changed to a sed solution instead. //ikaroz 2016-09-03
+    if [ "`echo "$LINETODEL" | sed -r 's/(\[\ ?[0-9]+:\]).*/\1/'`" != "$WHATNEW" ]; then
       echo "Error. Searched for $WHATNEW but got $LINETODEL"
       echo "Aborting. Report this to author."
       exit 0
