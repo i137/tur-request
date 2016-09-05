@@ -5,7 +5,11 @@ If upgrading more then one version at a time, follow the
 
  2.15.2: Fix: If the number of requests in the reqfile exceeded
               99, none of the requests with req number >99 could
-              be reqfilled. (ikaroz 2016-09-03)
+              be reqfilled.
+         Fix: Changed all command substitions to a consistent
+              format. Not sure why Turranius keeps jumping between
+              using the `backticks` and $(parenthesis)... :)
+                                            (ikaroz 2016-09-03)
 
  To upgrade from 2.15.1:
 
